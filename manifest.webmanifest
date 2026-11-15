@@ -1,11 +1,10 @@
 {
-  "name": "SHAN AI Private Assistant",
+  "name": "SHAN AI 3.0",
   "short_name": "SHAN AI",
   "start_url": "./",
   "display": "standalone",
-  "background_color": "#0b1422",
-  "theme_color": "#101b2b",
-  "description": "Private local-first personal assistant",
+  "background_color": "#0b1220",
+  "theme_color": "#101b31",
   "icons": [
     {
       "src": "icon-192.png",

@@ -1,116 +1,25 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#101b2b">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="SHAN AI">
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="apple-touch-icon" href="icon-192.png">
-<title>SHAN AI – Private Assistant</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101b31"><link rel="manifest" href="manifest.webmanifest"><title>SHAN AI 3.0</title>
 <style>
-:root{color-scheme:dark;--bg:#0b1422;--panel:#142338;--panel2:#1b304a;--line:#29415d;--ink:#f4f7fb;--muted:#a8b8cb;--accent:#69c8f2;--good:#8bd6a6}
-*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,#101d30,#09111d 65%);color:var(--ink);font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
-header{padding:calc(16px + env(safe-area-inset-top)) 18px 14px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#101b2bf2;backdrop-filter:blur(16px);z-index:5}
-.logo{width:42px;height:42px;border-radius:14px;background:linear-gradient(135deg,#27567b,#18334e);display:grid;place-items:center;font-size:22px}
-h1{font-size:20px;margin:0}header small{color:var(--muted)}.local{margin-left:auto;color:var(--good);font-size:11px;border:1px solid #38664a;border-radius:20px;padding:6px 8px}
-main{max-width:760px;margin:auto;padding:18px 15px 100px}
-.welcome{padding:20px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(140deg,#1b3551,#132237);margin-bottom:16px}
-.eyebrow{color:var(--accent);font-size:11px;letter-spacing:1.5px;font-weight:700}.welcome h2{font-size:25px;line-height:1.15;margin:9px 0}.welcome p{color:var(--muted);margin:0;font-size:14px;line-height:1.5}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:14px 0}
-.tile{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:15px;min-height:112px;text-align:left;color:var(--ink)}
-.tile .ico{font-size:23px}.tile b{display:block;margin:9px 0 4px}.tile span{color:var(--muted);font-size:12px;line-height:1.35}
-.panel{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:15px;margin:13px 0}
-h3{font-size:16px;margin:0 0 12px}label{display:block;color:var(--muted);font-size:12px;margin:10px 0 6px}
-input,textarea,select{width:100%;border:1px solid var(--line);border-radius:12px;background:#0c1929;color:var(--ink);padding:12px;font:inherit;outline:none}
-textarea{min-height:90px;resize:vertical}button{border:0;border-radius:12px;padding:11px 14px;background:var(--accent);color:#071522;font-weight:700;font-size:14px}
-button.secondary{background:var(--panel2);border:1px solid var(--line);color:var(--ink)}button.danger{background:#542d38;color:#ffe8ed}
-.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.chatlog{display:flex;flex-direction:column;gap:10px;max-height:42vh;overflow:auto;margin:12px 0}
-.bubble{padding:12px 13px;border-radius:15px;max-width:90%;white-space:pre-wrap;line-height:1.45;font-size:14px}.user{align-self:flex-end;background:#204663}.bot{align-self:flex-start;background:#203148}
-nav{position:fixed;bottom:0;left:0;right:0;padding:9px 8px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:space-around;background:#101b2bf2;border-top:1px solid var(--line);backdrop-filter:blur(15px);z-index:8}
-nav button{background:transparent;color:var(--muted);padding:7px 10px;font-size:11px}nav button.active{color:var(--accent)}
-.view{display:none}.view.active{display:block}.note{border:1px solid var(--line);border-radius:12px;padding:11px;margin:8px 0;background:#0e1b2b}.note small{color:var(--muted)}
-footer{color:var(--muted);font-size:11px;line-height:1.5;text-align:center;margin:18px 0}
-#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#e8f4fc;color:#102033;padding:10px 15px;border-radius:20px;display:none;font-size:13px;z-index:20}
-</style>
-</head>
-<body>
-<header><div class="logo">✦</div><div><h1>SHAN AI</h1><small>Your private personal assistant</small></div><div class="local">● ON DEVICE</div></header>
-<main>
-<section id="home" class="view active">
- <div class="welcome"><div class="eyebrow">PRIVATE EDITION · BUILD 0.2</div><h2>Good to see you.<br>What shall we work on?</h2><p>Your first local-first workspace. Notes and saved records stay in this browser on this iPhone.</p></div>
- <div class="grid">
-  <button class="tile" onclick="show('construction')"><div class="ico">🏗️</div><b>Construction AI</b><span>PMC, planning, BOQ, tendering and project controls</span></button>
-  <button class="tile" onclick="show('finance')"><div class="ico">📈</div><b>Finance AI</b><span>Salary, SIP, FD and investment calculations</span></button>
-  <button class="tile" onclick="show('documents')"><div class="ico">📄</div><b>Document AI</b><span>Store notes and paste document text for review</span></button>
-  <button class="tile" onclick="show('career')"><div class="ico">🌍</div><b>Career AI</b><span>CV notes, international roles and applications</span></button>
- </div>
- <div class="panel"><h3>💬 Ask SHAN AI</h3><div class="chatlog" id="chatlog"><div class="bubble bot">Welcome. I'm running in private demo mode. I can save your notes locally and help with basic calculations. A full AI model is not connected yet.</div></div><div style="display:flex;gap:8px"><input id="chatinput" placeholder="Type a question…" onkeydown="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">Send</button></div><div class="actions"><button class="secondary" onclick="voiceInput()">🎙 Dictate</button><button class="secondary" onclick="speakLast()">🔊 Read reply</button></div><small id="voiceStatus" style="color:var(--muted)"></small></div>
-</section>
-
-<section id="construction" class="view">
- <div class="panel"><h3>🏗️ Construction workspace</h3><p style="color:var(--muted);font-size:13px">Capture project issues, decisions, vendor actions and coordination notes. Information is saved on this device.</p>
- <label>Project / subject</label><input id="cTitle" placeholder="e.g. Auditorium – PEB coordination">
- <label>Meeting notes / issue / action</label><textarea id="cBody" placeholder="Enter design status, pending approvals, vendor commitments, risks…"></textarea>
- <div class="actions"><button onclick="saveNote('Construction')">Save project note</button></div><div id="cNotes"></div></div>
-</section>
-
-<section id="finance" class="view">
- <div class="panel"><h3>📈 Salary calculator</h3><label>Annual CTC (₹)</label><input id="ctc" type="number" value="1600000"><label>Estimated annual deductions / non-cash components (₹)</label><input id="deduct" type="number" value="0"><label>Estimated annual tax and other deductions (₹)</label><input id="tax" type="number" value="0"><div class="actions"><button onclick="calcSalary()">Calculate</button></div><div id="salaryResult" class="note">Enter your assumptions and calculate. This is a simple estimate, not a tax filing calculation.</div></div>
- <div class="panel"><h3>Monthly SIP growth estimator</h3><label>Monthly SIP (₹)</label><input id="sip" type="number" value="5000"><label>Expected annual return (%) – assumption only</label><input id="rate" type="number" value="10"><label>Period (years)</label><input id="years" type="number" value="10"><div class="actions"><button onclick="calcSIP()">Estimate value</button></div><div id="sipResult" class="note">Returns are not guaranteed.</div></div>
-</section>
-
-<section id="documents" class="view">
- <div class="panel"><h3>📄 Document workspace</h3><p style="color:var(--muted);font-size:13px">For this first version, paste text copied from a PDF, Word or Excel document. Direct file parsing will be added later.</p>
- <label>Document name</label><input id="dTitle" placeholder="e.g. Interior kickoff minutes">
- <label>Text / extract</label><textarea id="dBody" placeholder="Paste document text here…"></textarea><div class="actions"><button onclick="saveNote('Document')">Save document extract</button></div><div id="dNotes"></div></div>
-</section>
-
-<section id="career" class="view">
- <div class="panel"><h3>🌍 Career workspace</h3><p style="color:var(--muted);font-size:13px">Save target roles, countries, recruiter notes and application follow-ups.</p>
- <label>Role / opportunity</label><input id="jTitle" placeholder="e.g. Civil Division Manager – Brunei">
- <label>Details / recruiter / next action</label><textarea id="jBody" placeholder="Job link, salary, location, contact, application status…"></textarea><div class="actions"><button onclick="saveNote('Career')">Save career note</button></div><div id="jNotes"></div></div>
-</section>
-
-<section id="settings" class="view">
- <div class="panel"><h3>🔐 Privacy & local data</h3><p style="color:var(--muted);font-size:13px">This version does not send saved notes to an AI provider. Browser data can be lost if you clear Safari website data, remove the site, or reset the iPhone. Export a backup regularly.</p>
- <div class="actions"><button onclick="exportData()">Export my backup</button><button class="secondary" onclick="document.getElementById('importFile').click()">Import backup</button><input id="importFile" type="file" accept="application/json" hidden onchange="importData(event)"></div>
- <div class="actions"><button class="danger" onclick="clearData()">Delete all local data</button></div></div>
- <div class="panel"><h3>What is not enabled yet</h3><ul style="color:var(--muted);font-size:13px;line-height:1.7"><li>Full GPT-level AI responses</li><li>Automatic PDF / Excel / Word extraction</li><li>Gmail or Outlook access</li><li>Live job search and current market data</li><li>Native iOS app installation through the App Store</li></ul></div>
-</section>
-<footer>SHAN AI Private Edition · Prototype 0.2<br>Keep iPhone backups protected. Do not store passwords, API keys or highly sensitive company information here.</footer>
-</main>
-<nav>
-<button class="active" data-view="home" onclick="show('home')">⌂<br>Home</button>
-<button data-view="construction" onclick="show('construction')">🏗️<br>Projects</button>
-<button data-view="finance" onclick="show('finance')">₹<br>Finance</button>
-<button data-view="documents" onclick="show('documents')">▤<br>Files</button>
-<button data-view="settings" onclick="show('settings')">⚙<br>Privacy</button>
-</nav>
-<div id="toast"></div>
+:root{--bg:#0b1220;--panel:#121e32;--line:#293953;--txt:#edf3ff;--muted:#a9b8ce;--accent:#6bd6b0}*{box-sizing:border-box}body{margin:0;background:linear-gradient(160deg,#0b1220,#101d32);color:var(--txt);font:16px system-ui}main{max-width:850px;margin:auto;padding:22px 16px 48px}.brand{display:flex;justify-content:space-between;align-items:center;gap:12px}h1{font-size:28px;margin:4px 0}h2{font-size:19px;margin:0 0 12px}p{line-height:1.5}.muted,small{color:var(--muted);font-size:13px}.pill{border:1px solid #2f755f;color:#a8f1d7;border-radius:30px;padding:6px 10px;font-size:12px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:17px;padding:16px;margin:16px 0}textarea,input,select{width:100%;background:#0b1526;color:var(--txt);border:1px solid #344762;border-radius:10px;padding:12px;font:inherit}textarea{min-height:155px;resize:vertical}.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}.row>*{flex:1}button{background:var(--accent);color:#062219;border:0;border-radius:10px;padding:12px 15px;font-weight:700}button.secondary{background:#263750;color:#edf3ff;border:1px solid #415775}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.tile{background:#0d1829;border:1px solid #2b3b54;border-radius:12px;padding:12px}.tile b{display:block;margin-bottom:5px}.report h3{font-size:15px;color:#a8f1d7;margin:18px 0 6px}.report p,.report li{line-height:1.55}.report ul{padding-left:20px}.warn{border-left:3px solid #e5b45f;padding:10px;background:#342b1d;border-radius:7px;color:#ffe2ad;font-size:13px}footer{color:#91a3bd;font-size:12px;text-align:center;padding:20px}@media(max-width:520px){.grid{grid-template-columns:1fr}}
+</style></head><body><main>
+<div class="brand"><div><div class="muted">YOUR PERSONAL UNIVERSAL INTELLIGENCE WORKSPACE</div><h1>SHAN AI 3.0</h1></div><span class="pill">HYBRID · PRIVATE FIRST</span></div>
+<p class="muted">One input. Complete intelligence. Start with any text, voice note transcript or supported file.</p>
+<section class="panel"><h2>What would you like me to understand?</h2><textarea id="input" placeholder="Paste an investment statement, project MOM, BOQ, job description, email, IELTS paragraph, product details or any other information..."></textarea>
+<div class="row" style="margin-top:10px"><input id="file" type="file" accept=".txt,.csv,.json,.md,.html"><select id="language"><option value="en">Simple English</option><option value="ta">Tamil explanation (AI connection planned)</option><option value="both">English + Tamil (AI connection planned)</option></select></div>
+<div class="row" style="margin-top:10px"><button onclick="analyse()">Analyse my input</button><button class="secondary" onclick="dictate()">🎙 Voice input</button><button class="secondary" onclick="clearAll()">Clear</button></div>
+<p class="muted">Starter supports pasted text and TXT, CSV, JSON, Markdown and HTML files. PDF, scanned images, Word, Excel and audio-file extraction require the next integration stage.</p></section>
+<section class="panel"><h2>Universal intelligence pipeline</h2><div class="grid"><div class="tile"><b>01 · Extract</b><small>Find names, dates, amounts, percentages and key phrases.</small></div><div class="tile"><b>02 · Understand</b><small>Classify topics and likely intent.</small></div><div class="tile"><b>03 · Evaluate</b><small>Highlight missing context, risks and verification needs.</small></div><div class="tile"><b>04 · Deliver</b><small>Create a structured report and action checklist.</small></div></div></section>
+<section class="panel" id="output" hidden><div class="row"><h2 style="flex:2">Intelligence report</h2><button class="secondary" onclick="downloadReport()">Download report</button><button class="secondary" onclick="window.print()">Print / Save PDF</button></div><div id="report" class="report"></div></section>
+<div class="warn">Prototype honesty: this first version uses local, rule-based extraction and report structuring. It is not yet connected to a reasoning AI, live financial data, Outlook, LinkedIn or shopping APIs. It does not send your input anywhere.</div><footer>SHAN AI 3.0 · First working local prototype · Verify important financial, legal and technical decisions independently.</footer></main>
 <script>
-const DB='shan-ai-private-v02';
-function getData(){try{return JSON.parse(localStorage.getItem(DB)||'{"notes":[]}')}catch(e){return {notes:[]}}}
-function putData(d){localStorage.setItem(DB,JSON.stringify(d))}
-function toast(s){let t=document.getElementById('toast');t.textContent=s;t.style.display='block';setTimeout(()=>t.style.display='none',2200)}
-function show(id){document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id===id));document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===id));renderNotes()}
-function saveNote(type){let map={Construction:['cTitle','cBody'],Document:['dTitle','dBody'],Career:['jTitle','jBody']};let [a,b]=map[type],title=document.getElementById(a).value.trim(),body=document.getElementById(b).value.trim();if(!title&&!body){toast('Enter a title or note first');return}let d=getData();d.notes.unshift({id:crypto.randomUUID(),type,title:title||type,body,created:new Date().toISOString()});putData(d);document.getElementById(a).value='';document.getElementById(b).value='';renderNotes();toast('Saved on this iPhone')}
-function renderNotes(){let targets={Construction:'cNotes',Document:'dNotes',Career:'jNotes'};let d=getData();for(let [type,id] of Object.entries(targets)){let el=document.getElementById(id);if(!el)continue;el.innerHTML=d.notes.filter(n=>n.type===type).map(n=>`<div class="note"><b>${esc(n.title)}</b><br><small>${new Date(n.created).toLocaleString()}</small><p style="white-space:pre-wrap;font-size:13px">${esc(n.body)}</p><button class="secondary" onclick="deleteNote('${n.id}')">Delete</button></div>`).join('')||'<p style="color:var(--muted);font-size:12px">No saved notes yet.</p>'}}
-function esc(s){return String(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function deleteNote(id){let d=getData();d.notes=d.notes.filter(n=>n.id!==id);putData(d);renderNotes();toast('Note deleted')}
-function calcSalary(){let c=+document.getElementById('ctc').value||0,d=+document.getElementById('deduct').value||0,t=+document.getElementById('tax').value||0;let net=Math.max(0,c-d-t);document.getElementById('salaryResult').textContent=`Illustrative annual net: ₹${net.toLocaleString('en-IN')}\nIllustrative monthly net: ₹${(net/12).toLocaleString('en-IN',{maximumFractionDigits:0})}\nThis uses only the deductions you entered; it does not calculate statutory tax or PF. Review assumptions with payroll/tax adviser.`}
-function calcSIP(){let p=+document.getElementById('sip').value||0,r=(+document.getElementById('rate').value||0)/1200,n=(+document.getElementById('years').value||0)*12;let fv=r===0?p*n:p*((Math.pow(1+r,n)-1)/r)*(1+r);document.getElementById('sipResult').textContent=`Illustrative future value: ₹${Math.round(fv).toLocaleString('en-IN')}\nTotal invested: ₹${(p*n).toLocaleString('en-IN')}\nEstimated growth: ₹${Math.round(fv-p*n).toLocaleString('en-IN')}\nAssumed constant monthly compounding; actual market returns vary and are not guaranteed.`}
-function addBubble(text,who){let e=document.createElement('div');e.className='bubble '+who;e.textContent=text;document.getElementById('chatlog').appendChild(e);e.scrollIntoView({block:'end'})}
-function answer(q){let s=q.toLowerCase();if(/sip|mutual fund|investment|ctc|salary|fd/.test(s))return 'I can run the basic salary and SIP calculators in the Finance workspace. For personalised tax or investment analysis, verify current rules and figures; this offline prototype does not fetch live market data.';if(/boq|quotation|vendor|gfc|schedule|delay|pmc|construction/.test(s))return 'Use the Construction workspace to save the project details. This prototype does not yet analyse uploaded drawings or compare quotation files. That document-analysis capability is planned for a later version.';if(/job|career|ireland|brunei|cv|resume/.test(s))return 'Use the Career workspace to save target roles and application notes. Live vacancy searches are not connected in this offline version.';if(/document|minutes|pdf|excel|word|email/.test(s))return 'Paste document text in the Document workspace and save it locally. Automatic file reading and email connection are not enabled yet.';return 'I am currently in offline demo mode. I can save project, document and career notes locally, and run basic salary and SIP estimates. Full AI reasoning is not connected yet.'}
-function sendChat(){let i=document.getElementById('chatinput'),q=i.value.trim();if(!q)return;addBubble(q,'user');i.value='';let a=answer(q);addBubble(a,'bot');window.lastReply=a}
-function speakLast(){if(!window.lastReply){toast('No reply to read yet');return}if('speechSynthesis'in window){let u=new SpeechSynthesisUtterance(window.lastReply);speechSynthesis.speak(u)}else toast('Speech playback is not supported in this browser')}
-function voiceInput(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){toast('Voice dictation is not supported here. Use iPhone keyboard microphone.');return}let r=new SR();r.lang='en-IN';r.interimResults=false;r.onresult=e=>{document.getElementById('chatinput').value=e.results[0][0].transcript;toast('Voice captured – tap Send')};r.onerror=()=>toast('Voice recognition unavailable');r.start();document.getElementById('voiceStatus').textContent='Listening…'}
-function exportData(){let blob=new Blob([JSON.stringify(getData(),null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='shan-ai-private-backup.json';a.click();URL.revokeObjectURL(url)}
-function importData(e){let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!Array.isArray(d.notes))throw Error();putData(d);renderNotes();toast('Backup imported')}catch(err){toast('Invalid backup file')}};r.readAsText(f)}
-function clearData(){if(confirm('Delete all SHAN AI notes stored in this browser? This cannot be undone.')){localStorage.removeItem(DB);renderNotes();toast('Local data deleted')}}
-renderNotes();
-if('serviceWorker'in navigator && location.protocol.startsWith('http'))navigator.serviceWorker.register('./sw.js').catch(()=>{});
-</script>
-</body></html>
+const $=id=>document.getElementById(id);let latest='';
+$('file').addEventListener('change',async e=>{let f=e.target.files[0];if(!f)return;let ext=f.name.split('.').pop().toLowerCase();if(!['txt','csv','json','md','html'].includes(ext)){alert('This version accepts TXT, CSV, JSON, Markdown and HTML. Other formats are planned.');return;}$('input').value=await f.text();});
+function classify(t){let s=t.toLowerCase(),g={Finance:['mutual fund','sip','stock','share','investment','portfolio','fd','fixed deposit','interest','return','xirr','cagr','nav','dividend','loan','salary','ctc','tax'],Construction:['primavera','p6','boq','rfi','gfc','drawing','schedule','contractor','vendor','procurement','construction','project','critical path','delay','tender','design coordination','site'],Career:['resume','cv','job description','vacancy','recruiter','salary range','visa sponsorship','linkedin profile','career'],Email:['dear ','regards','subject:','outlook','please find attached','kindly','reply','email'],Language:['ielts','grammar','correct this sentence','translate','vocabulary','essay','speaking'],Shopping:['amazon','flipkart','price','discount','coupon','warranty','product','offer']},d=[];for(let [k,a] of Object.entries(g))if(a.some(w=>s.includes(w)))d.push(k);return d.length?d:['General'];}
+function extract(t){return{lines:t.split(/\n/).map(x=>x.trim()).filter(Boolean),dates:[...new Set(t.match(/\b(?:\d{1,2}[\/-]\d{1,2}[\/-]\d{2,4}|\d{4}-\d{2}-\d{2})\b/g)||[])],money:[...new Set(t.match(/(?:₹|INR\s?|Rs\.?\s?|\$|€|£)\s?[\d,]+(?:\.\d+)?/gi)||[])],perc:[...new Set(t.match(/\b\d+(?:\.\d+)?\s?%/g)||[])]};}
+function analyse(){let t=$('input').value.trim();if(!t)return alert('Paste text or upload a supported file first.');let d=classify(t),x=extract(t),wc=t.split(/\s+/).length,flags=[];if(!x.dates.length)flags.push('No clear date detected. Confirm the relevant period.');if(!x.money.length&&!x.perc.length)flags.push('No currency amount or percentage detected. Check whether key figures are missing.');if(t.length<100)flags.push('Input is short; a fuller source may be needed.');let esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));let list=a=>a.length?'<ul>'+a.map(v=>'<li>'+esc(v)+'</li>').join('')+'</ul>':'<p>None confidently identified from supplied text.</p>';let actions=d.includes('Finance')?['Confirm product, statement period and cash flows.','Verify invested value, current value, fees and tax before return calculations.','Compare risk, liquidity and time horizon against your goal.']:d.includes('Construction')?['Confirm project, revision and reporting date.','Validate quantities, dates, responsibilities and contractual references.','Turn issues into owner, due date and closure status.']:d.includes('Email')?['Confirm sender request and deadline.','Check commitments before replying.','Prepare a draft for review; do not send automatically.']:d.includes('Career')?['Verify employer, vacancy date, location and original source.','Compare mandatory requirements with actual CV evidence.','Tailor application without inventing experience.']:['Confirm purpose and intended decision.','Collect missing context and authoritative evidence.','Review findings before taking action.'];latest=`SHAN AI 3.0 REPORT\nDetected topics: ${d.join(', ')}\nWords: ${wc}\nDates: ${x.dates.join(', ')}\nAmounts: ${x.money.join(', ')}\nPercentages: ${x.perc.join(', ')}\nKey statements:\n${x.lines.slice(0,12).join('\n')}\nCautions:\n${flags.join('\n')}\nNext actions:\n${actions.join('\n')}`;
+$('report').innerHTML=`<p><b>Detected subject:</b> ${d.map(esc).join(' · ')}</p><p><b>Input size:</b> ${wc} words · ${t.length} characters</p><h3>1. Executive overview</h3><p>This input appears related to <b>${d.map(esc).join(', ')}</b>. The starter engine extracted the following material for review. External facts have not been verified.</p><h3>2. Extracted dates</h3>${list(x.dates)}<h3>3. Extracted amounts</h3>${list(x.money)}<h3>4. Extracted percentages</h3>${list(x.perc)}<h3>5. Key source statements</h3>${list(x.lines.slice(0,12))}<h3>6. Missing information and cautions</h3>${list(flags)}<h3>7. Recommended next actions</h3>${list(actions)}<h3>8. Verification status</h3><p>Extracted items come from the supplied input. No live market, job, product, email or external database checks were performed. Do not treat this prototype as a verified financial, legal or engineering opinion.</p><h3>9. Further analysis required</h3><p>Connect an approved AI reasoning service and relevant sources for domain-specific analysis, evidence citations and validated calculations.</p>`;$('output').hidden=false;$('output').scrollIntoView({behavior:'smooth'});}
+function downloadReport(){if(!latest)return;let a=document.createElement('a');a.href=URL.createObjectURL(new Blob([latest],{type:'text/plain'}));a.download='SHAN_AI_Intelligence_Report.txt';a.click();URL.revokeObjectURL(a.href);}
+function clearAll(){$('input').value='';$('file').value='';$('output').hidden=true;latest='';}
+function dictate(){let SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){alert('Speech recognition unavailable. Use iPhone keyboard microphone.');return;}let r=new SR();r.lang=$('language').value==='ta'?'ta-IN':'en-IN';r.onresult=e=>$('input').value+=($('input').value?' ':'')+e.results[0][0].transcript;r.onerror=()=>alert('Voice recognition unavailable. Try iPhone keyboard microphone.');r.start();}
+if('serviceWorker'in navigator&&location.protocol.startsWith('http'))addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script></body></html>

@@ -1,23 +1,9 @@
-SHAN AI PRIVATE EDITION – BUILD 0.2
+SHAN AI 3.0 – FIRST WORKING LOCAL PROTOTYPE
 
-WHAT THIS IS
-A small local-first progressive web app starter. It includes a chat demo, local notes for construction/document/career workspaces, basic salary and SIP estimators, voice dictation where Safari supports it, speech playback, and JSON backup/restore.
+PUBLISH: Extract ZIP. Upload index.html, manifest.webmanifest, sw.js, icon-192.png and icon-512.png to the ROOT of your existing shan-ai GitHub repository. Commit to main. GitHub Pages should redeploy. Open https://YOUR-USERNAME.github.io/shan-ai/ in Safari and Add to Home Screen.
 
-PRIVACY
-Notes are stored in browser localStorage on this iPhone. This app does not send saved notes to a server or AI provider. Browser storage is not an encrypted vault. Anyone with access to the unlocked phone/browser profile may potentially access it. Clearing Safari website data may erase it. Export backups and protect the exported file.
+WORKING NOW: One universal input; pasted text and TXT/CSV/JSON/Markdown/HTML files; basic local topic classification; extraction of dates, currency amounts, percentages and key lines; structured report; downloadable TXT and Print/Save as PDF; browser voice dictation where supported. Input stays in browser and is not sent to a server.
 
-IMPORTANT LIMITATION
-Full AI reasoning is not connected. The chat uses simple offline demo responses. No PDF/Excel/Word parsing, live jobs, Gmail, Outlook, or financial-market data is enabled. Do not treat sample calculations as tax or investment advice.
+NOT YET IMPLEMENTED: True AI reasoning, OCR, PDF scans, Word/Excel parsing, audio-file transcription, Tamil translation, live financial data, job search aggregation, Outlook, LinkedIn, shopping APIs or direct operation of Primavera/Rhino/3ds Max. These require later services, permissions and possibly paid usage.
 
-IPHONE INSTALLATION
-For a true Home Screen PWA install, the files must be served from an HTTPS website. The iPhone alone can browse and upload files to a static hosting service, but the hosting provider serves the app files; your saved notes remain in local browser storage. If you require absolutely no external hosting at all, open index.html from the Files app for a limited test, but Add to Home Screen/offline PWA behavior is not guaranteed from a file:// URL.
-
-Suggested next route:
-1. Unzip this package in the iPhone Files app.
-2. Use a static HTTPS hosting service that supports uploading a folder/site, or ask a trusted person to publish these static files.
-3. Open the HTTPS site in Safari.
-4. Tap Share > Add to Home Screen.
-5. Open SHAN AI from the Home Screen.
-6. Create a test note, export a backup, and verify that it can be restored.
-
-No OpenAI API key is needed for this offline build.
+PRIVACY: GitHub Pages hosts public application code. Never upload confidential files, passwords, tokens or API keys to the repository. This prototype does not store submitted input on a server.
